@@ -4,8 +4,5 @@ Version: 0.1
 Author: Cheng Ju <jucheng1992@gmail.com>
 Maintainer: Cheng Ju <jucheng1992@gmail.com>
 Description: This package built a interfact to julia package TargetedLearning (https://lendle.github.io/TargetedLearning.jl/) based on rjulia project (https://github.com/armgong/RJulia).
-Depends: R (>= 3.2.0)
 License: GPL-3
-Depends:
-	R (>= 3.0.0),
-	rjulia
+Depends: R (>= 3.2.0)
