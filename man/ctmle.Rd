@@ -33,10 +33,7 @@ ctmle(logitQnA1, logitQnA0, W, A, Y, v = 10, gbounds = c(0, 1),
 A list for targeted estimator and standard error.
 }
 \description{
-.. content for \description{} A function compute ctmle estimate based on julia package TargetedLearning.jl.
-}
-\details{
-.. content for \details{} ..
+A function compute ctmle estimator and its standard error based on julia package TargetedLearning.jl.
 }
 \author{
 Cheng JU
