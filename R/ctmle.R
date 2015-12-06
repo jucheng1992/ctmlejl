@@ -10,6 +10,7 @@
 ##' @param searchstrategy  Strategy for adding covariates to estimates of g. Default is "ForwardStepwise". Other options: "LogisticOrdering", "PartialCorrOrdering",  "SuperLearner"
 ##' @param patience Integer. For how many steps should CV continue after finding a local optimum? Defaults to typemax(Int).
 ##' @param param a string stand for different target parameter. "ATE" stands for additive  treatment effect, Mean1 and Mean0 stand for the mean outcome in treatment or control group.
+##' @param order an integer vector for the manual ordering option. Notice, the first column is intercept, so the indexes start from 2.
 ##' @return A list for targeted estimator and standard error.
 ##' @author Cheng JU
 ##' @export
@@ -20,7 +21,8 @@ ctmle <- function(logitQnA1, logitQnA0,
                   searchstrategy = "ForwardStepwise",
                   patience = 100,
                   penalize_risk = TRUE,
-                  param = "ATE"){
+                  param = "ATE",
+                  order =  vector()){
       # This function will call ctmle in TargetedLearning.jl from julia.
       #
       # Args:
@@ -34,12 +36,16 @@ ctmle <- function(logitQnA1, logitQnA0,
       #     gbounds: a length two vector, stand for lower and up bound for truncation gn1
       #     searchstrategy: Strategy for adding covariates to estimates of g. Default is
       #           "ForwardStepwise". Other options: "LogisticOrdering", "PartialCorrOrdering",
-      #           "SuperLearner"
+      #           "SuperLearner" and "ManualOrdering".
       #     patience: For how many steps should CV continue after finding a local optimum?
       #           Defaults to typemax(Int)
       #     param: a string stand for different target parameter. "ATE" stands for additive
       #           treatment effect, Mean1 and Mean0 stand for the mean outcome in treatment
       #           or control group.
+      #     order: an integer vector for the manual ordering option. Notice, the first column is 
+      #           intercept, so the indexes start from 2.
+      # Return:
+      #     a list with point estimator and its estimated standar error.
 
 
       # Add ones as first column of W
@@ -55,6 +61,7 @@ ctmle <- function(logitQnA1, logitQnA0,
       r2j(logitQnA0, "logitQnA0")
       r2j(gbounds, "bound")
       r2j(patience, "patience")
+      r2j(order, "order")
       julia_void_eval("n=length(treatment)")
 
       # Convert some variables to the required data type.
@@ -102,6 +109,12 @@ ctmle <- function(logitQnA1, logitQnA0,
                                        PreOrdered(PartialCorrOrdering()),
                                        PreOrdered(LogisticOrdering())],
                                                        param = param)")
+      }else if(searchstrategy == "ManualOrdering"){
+            julia_eval("ctmle_res =  ctmle(logitQnA1, logitQnA0, baseline_covars,
+                              treatment, outcome, cvplan=cvplan, gbounds = bound,
+                              searchstrategy =PreOrdered(CTMLEs.ManualOrdering(order)),
+                                                       param = param)")
+            
       }
 
       se <- j2r("sqrt(var(ctmle_res.ic))/sqrt(n)")

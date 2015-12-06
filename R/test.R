@@ -14,13 +14,16 @@ y <- sample(c(0,1), n, replace = TRUE)
 gn1 <- runif(n)
 
 tmle(logit(QnA1), logit(QnA0), w, a, y, gn1,
-      param = "ATE")
+     param = "ATE")
 
 ctmle(logit(QnA1), logit(QnA0), w, a, y, v=5, gbounds=c(0.025,0.095), patience =p, param = "Mean0")
 ctmle(logit(QnA1), logit(QnA0), w, a, y, v=5, gbounds=c(0.025,0.095), patience =p, param = "Mean1")
 ctmle(logit(QnA1), logit(QnA0), w, a, y, v=5, gbounds=c(0.025,0.095), patience =p, param = "ATE")
 
-system.time(
-      ctmle(logit(QnA1), logit(QnA0), w, a, y, v=5, gbounds=c(0.025,0.095),
-            patience =p, searchstrategy = "LogisticOrdering")
-)
+
+ctmle(logit(QnA1), logit(QnA0), w, a, y, v=5, gbounds=c(0.025,0.095),
+      patience =p, searchstrategy = "LogisticOrdering")
+
+ctmle(logit(QnA1), logit(QnA0), w, a, y, v=5, gbounds=c(0.025,0.095),
+      patience =p, searchstrategy = "ManualOrdering", order = 2:11)
+
