@@ -1,5 +1,5 @@
 require(devtools)
-if(require(rjulia)){
+if(!require(rjulia)){
       devtools::install_github("armgong/rjulia", ref="master")
       library(rjulia)
 }

@@ -1,9 +1,9 @@
 Package: ctmlejl
-Title: ctmlejl - A interface to use TargetedLearning package in julia
+Title: ctmlejl: An interface to use TargetedLearning package in julia
 Version: 0.1
-Author: Cheng Ju <jucheng1992@gmail.com>
-Maintainer: Cheng Ju <jucheng1992@gmail.com>
-Description: This package built a interfact to julia package TargetedLearning (https://lendle.github.io/TargetedLearning.jl/) based on rjulia project (https://github.com/armgong/RJulia).
+Authors@R: person("Cheng", "Ju", email = "jucheng1992@gmail.com",
+  role = c("aut", "cre"))
+Description: This package built an interfact to julia package TargetedLearning (https://lendle.github.io/TargetedLearning.jl/) based on rjulia project (https://github.com/armgong/RJulia).
 License: GPL-3
 Depends: R (>= 3.2.0)
 Suggests: testthat
