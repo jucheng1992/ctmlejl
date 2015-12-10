@@ -3,7 +3,7 @@ ctmlejl: an interface to julia package TargetedLearning.jl
 
 --------------------------
 
-This package built a interfact to julia package TargetedLearning (https://lendle.github.io/TargetedLearning.jl/) based on rjulia project (https://github.com/armgong/RJulia).
+This package built an interfact to julia package TargetedLearning (https://lendle.github.io/TargetedLearning.jl/) based on rjulia project (https://github.com/armgong/RJulia).
 
 For details of Targeted Learning, see the book Van der Laan, Mark J., and Sherri Rose. Targeted learning: causal inference for observational and experimental data. Springer Science & Business Media, 2011., or https://lendle.github.io/TargetedLearning.jl/
 
