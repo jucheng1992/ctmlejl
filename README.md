@@ -33,7 +33,7 @@ Pkg.clone("https://github.com/lendle/TargetedLearning.jl.git")
 Install devtools package:
 
 ```
-install.packages(devtools)
+install.packages("devtools")
 ```
 
 Install rjulia package from github:
