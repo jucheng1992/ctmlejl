@@ -3,7 +3,6 @@ logit <- function(x){
       return(res)
 }
 
-
 n <- 1000
 p <- 10
 QnA1 <- runif(n)

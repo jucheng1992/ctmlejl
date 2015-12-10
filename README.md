@@ -46,3 +46,56 @@ Install ctmlejl package from github:
 ```
 devtools::install_github("jucheng1992/ctmlejl")
 ```
+
+### Initialize julia
+
+For some technical reasons, this package is not able to automatic load julia package for you. You may manually initialize it:
+
+
+```
+julia_init() 
+julia_void_eval("using DataArrays")
+julia_void_eval("using NumericExtensions")
+julia_void_eval("using Distributions")
+julia_void_eval("using TargetedLearning")
+julia_void_eval("using DataFrames")
+julia_void_eval("using GLM")
+julia_void_eval("import StatsBase.predict")
+
+```
+
+### Examples using cTMLE model:
+
+
+Here is some examples about using cTMLE models:
+
+
+```
+logit <- function(x){
+      res = log(x/ (1-x))
+      return(res)
+}
+
+n <- 1000
+p <- 10
+QnA1 <- runif(n)
+QnA0 <- runif(n)
+w <- matrix(rnorm(n * p), n, p)
+a <- sample(c(0,1), n, replace = TRUE)
+y <- sample(c(0,1), n, replace = TRUE)
+gn1 <- runif(n)
+
+tmle(logit(QnA1), logit(QnA0), w, a, y, gn1,
+     param = "ATE")
+
+ctmle(logit(QnA1), logit(QnA0), w, a, y, v=5, gbounds=c(0.025,0.095), patience =p, param = "Mean0")
+ctmle(logit(QnA1), logit(QnA0), w, a, y, v=5, gbounds=c(0.025,0.095), patience =p, param = "Mean1")
+ctmle(logit(QnA1), logit(QnA0), w, a, y, v=5, gbounds=c(0.025,0.095), patience =p, param = "ATE")
+
+
+ctmle(logit(QnA1), logit(QnA0), w, a, y, v=5, gbounds=c(0.025,0.095),
+      patience =p, searchstrategy = "LogisticOrdering")
+
+ctmle(logit(QnA1), logit(QnA0), w, a, y, v=5, gbounds=c(0.025,0.095),
+      patience =p, searchstrategy = "ManualOrdering", order = 2:11)
+```
