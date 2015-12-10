@@ -1,5 +1,5 @@
 # load rjulia package, initialize julia, and install related packages.
-library(rjulia)
+#' @import rjulia
 julia_init() 
 julia_void_eval("using DataArrays")
 julia_void_eval("using NumericExtensions")
