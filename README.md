@@ -53,7 +53,7 @@ For some technical reasons, this package is not able to automatic load julia pac
 
 
 ```
-julia_init() 
+julia_init()
 julia_void_eval("using DataArrays")
 julia_void_eval("using NumericExtensions")
 julia_void_eval("using Distributions")
@@ -88,14 +88,15 @@ gn1 <- runif(n)
 tmle(logit(QnA1), logit(QnA0), w, a, y, gn1,
      param = "ATE")
 
-ctmle(logit(QnA1), logit(QnA0), w, a, y, v=5, gbounds=c(0.025,0.095), patience =p, param = "Mean0")
-ctmle(logit(QnA1), logit(QnA0), w, a, y, v=5, gbounds=c(0.025,0.095), patience =p, param = "Mean1")
-ctmle(logit(QnA1), logit(QnA0), w, a, y, v=5, gbounds=c(0.025,0.095), patience =p, param = "ATE")
+ctmle(logit(QnA1), logit(QnA0), w, a, y, v=5, gbounds=c(0.025,0.975), patience =p, param = "Mean0")
+ctmle(logit(QnA1), logit(QnA0), w, a, y, v=5, gbounds=c(0.025,0.975), patience =p, param = "Mean1")
+ctmle(logit(QnA1), logit(QnA0), w, a, y, v=5, gbounds=c(0.025,0.975), patience =p, param = "ATE")
 
 
-ctmle(logit(QnA1), logit(QnA0), w, a, y, v=5, gbounds=c(0.025,0.095),
+ctmle(logit(QnA1), logit(QnA0), w, a, y, v=5, gbounds=c(0.025,0.975),
       patience =p, searchstrategy = "LogisticOrdering")
 
-ctmle(logit(QnA1), logit(QnA0), w, a, y, v=5, gbounds=c(0.025,0.095),
+ctmle(logit(QnA1), logit(QnA0), w, a, y, v=5, gbounds=c(0.025,0.975),
       patience =p, searchstrategy = "ManualOrdering", order = 2:11)
+
 ```

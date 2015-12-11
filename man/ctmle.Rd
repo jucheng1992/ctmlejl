@@ -21,15 +21,15 @@ ctmle(logitQnA1, logitQnA0, W, A, Y, v = 10, gbounds = c(0, 1),
 
 \item{v}{integer, stand for number of folds for cross-validation in cTMLE.}
 
+\item{gbounds}{a  vector of numeric of length two (with both of them in [0,1]), stand for the truncation boud for gn.}
+
 \item{searchstrategy}{Strategy for adding covariates to estimates of g. Default is "ForwardStepwise". Other options: "LogisticOrdering", "PartialCorrOrdering",  "SuperLearner"}
 
-\item{patience}{Integer. For how many steps should CV continue after finding a local optimum? Defaults to typemax(Int).}
+\item{patience}{Integer, stand for how many steps should CV continue after finding a local optimum. Defaults to typemax(Int).}
 
 \item{param}{a string stand for different target parameter. "ATE" stands for additive  treatment effect, Mean1 and Mean0 stand for the mean outcome in treatment or control group.}
 
 \item{order}{an integer vector for the manual ordering option. Notice, the first column is intercept, so the indexes start from 2.}
-
-\item{gbounds:}{a  vector of numeric of length two (with both of them in [0,1]), stand for the truncation boud for gn.}
 }
 \value{
 A list for targeted estimator and standard error.
