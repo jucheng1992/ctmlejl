@@ -105,7 +105,7 @@ ctmle <- function(logitQnA1, logitQnA0,
       }else if(searchstrategy == "SuperLearner"){
             julia_eval("ctmle_res =  ctmle(logitQnA1, logitQnA0, baseline_covars,
                               treatment, outcome, cvplan=cvplan, gbounds = bound,
-                              searchstrategy = [ForwardStepwise(),
+                              searchstrategy = [
                                        PreOrdered(PartialCorrOrdering()),
                                        PreOrdered(LogisticOrdering())],
                                                        param = param)")
